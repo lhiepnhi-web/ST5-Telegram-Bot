@@ -4,8 +4,13 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: "*/5 2-4 * * 1-5"
-    - cron: "*/5 6-7 * * 1-5"
+    # 09:15 - 11:30 Vietnam
+    - cron: "*/5 9-11 * * 1-5"
+      timezone: "Asia/Ho_Chi_Minh"
+
+    # 13:00 - 14:30 Vietnam
+    - cron: "*/5 13-14 * * 1-5"
+      timezone: "Asia/Ho_Chi_Minh"
 
 permissions:
   contents: write
@@ -15,10 +20,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+
   signal:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -42,8 +49,19 @@ jobs:
 
       - name: Save bot state
         run: |
-          git config user.name "ST5 Bot"
-          git config user.email "st5-bot@users.noreply.github.com"
-          git add bot_state.json
-          git diff --cached --quiet || git commit -m "ST5 bot state update"
-          git push 
+          if [ -f bot_state.json ]; then
+            git config user.name "ST5 Bot"
+            git config user.email "st5-bot@users.noreply.github.com"
+
+            git add bot_state.json
+
+            if git diff --cached --quiet; then
+              echo "No state changes."
+            else
+              git commit -m "ST5 bot state update"
+              git push
+            fi
+          else
+            echo "No bot_state.json created."
+            echo "This is normal when there is no state update."
+          fi 

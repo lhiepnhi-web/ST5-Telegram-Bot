@@ -1,0 +1,15 @@
+{
+  "version": "ST5_V1.1",
+  "positions": {
+    "MSR": false,
+    "CII": false
+  },
+  "last_signal": {
+    "MSR": "WAIT",
+    "CII": "WAIT"
+  },
+  "last_signal_date": {
+    "MSR": "2026-09-07",
+    "CII": "2026-09-07"
+  }
+}

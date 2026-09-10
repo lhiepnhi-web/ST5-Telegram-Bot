@@ -1,11 +1,11 @@
 {
   "version": "ST5_V1.1",
   "positions": {
-    "MSR": false,
+    "MSR": true,
     "CII": false
   },
   "last_signal": {
-    "MSR": "WAIT",
+    "MSR": "BUY",
     "CII": "WAIT"
   },
   "last_signal_date": {

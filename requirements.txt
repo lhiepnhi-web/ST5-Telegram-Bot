@@ -1,4 +1,0 @@
-vnstock
-pandas
-numpy
-requests
